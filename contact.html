@@ -10,9 +10,6 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%2[...]
 
   <link rel="stylesheet" href="css/style.css">
-  
-  <!-- EmailJS Library -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
 </head>
 <body>
 
@@ -122,7 +119,7 @@
 
           <a href="https://github.com/Surajjude" target="_blank" rel="noopener noreferrer" class="contact-card">
             <div class="contact-card-icon" style="background: var(--gradient-accent); color: #fff;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726[...]
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.03[...]
             </div>
             <div class="contact-card-info">
               <h4>GitHub</h4>
@@ -177,6 +174,8 @@
     </div>
   </footer>
 
+  <!-- EmailJS Library - loaded at end to not block page rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

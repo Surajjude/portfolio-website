@@ -6,6 +6,16 @@
 (function () {
   'use strict';
 
+  // EmailJS Configuration
+  const EMAILJS_SERVICE_ID = 'service_vz663yp';
+  const EMAILJS_TEMPLATE_ID = 'template_u838fia';
+  const EMAILJS_PUBLIC_KEY = '4xQJ92efHSihtMWsW';
+
+  // Initialize EmailJS
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
   // ---------- Theme Toggle ----------
   let currentTheme = 'dark'; // Stored in variable, not localStorage
 
@@ -306,7 +316,7 @@
     });
   }
 
-  // ---------- Contact Form Validation ----------
+  // ---------- Contact Form Validation & Email Sending ----------
   function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
@@ -316,6 +326,7 @@
     const messageInput = document.getElementById('contact-message');
     const formContent = document.querySelector('.form-content');
     const formSuccess = document.querySelector('.form-success');
+    const submitBtn = form.querySelector('button[type="submit"]');
 
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -367,16 +378,36 @@
       }
 
       if (isValid) {
-        // Show success state
-        if (formContent) formContent.style.display = 'none';
-        if (formSuccess) formSuccess.classList.add('show');
+        // Disable submit button
+        if (submitBtn) submitBtn.disabled = true;
 
-        // Reset form after a delay
-        setTimeout(() => {
-          form.reset();
-          if (formContent) formContent.style.display = 'block';
-          if (formSuccess) formSuccess.classList.remove('show');
-        }, 4000);
+        // Send email using EmailJS
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          from_name: nameInput.value.trim(),
+          from_email: emailInput.value.trim(),
+          message: messageInput.value.trim(),
+          to_email: 'surajjude888@gmail.com'
+        }).then(
+          (response) => {
+            // Success
+            if (formContent) formContent.style.display = 'none';
+            if (formSuccess) formSuccess.classList.add('show');
+
+            // Reset form after a delay
+            setTimeout(() => {
+              form.reset();
+              if (formContent) formContent.style.display = 'block';
+              if (formSuccess) formSuccess.classList.remove('show');
+              if (submitBtn) submitBtn.disabled = false;
+            }, 4000);
+          },
+          (error) => {
+            // Error sending email
+            console.error('EmailJS error:', error);
+            showError(submitBtn ? submitBtn.parentElement : form, 'Failed to send message. Please try again.');
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        );
       }
     });
   }

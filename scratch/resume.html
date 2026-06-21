@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Suraj Jude — Resume</title>
+  <style>
+    :root {
+      --color-primary: #1e3a8a;
+      --color-text: #1f2937;
+      --color-text-light: #4b5563;
+      --color-border: #e5e7eb;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--color-text);
+      line-height: 1.5;
+      padding: 40px;
+      font-size: 13.5px;
+      background: white;
+    }
+    
+    .header {
+      border-bottom: 2px solid var(--color-primary);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      font-size: 30px;
+      color: var(--color-primary);
+      font-weight: 700;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .header .subtitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-text-light);
+      margin-bottom: 10px;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 12px;
+      color: var(--color-text-light);
+    }
+    
+    .contact-info a {
+      color: var(--color-text-light);
+      text-decoration: none;
+    }
+    
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+    
+    .section {
+      margin-bottom: 20px;
+    }
+    
+    .section-title {
+      font-size: 15px;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      font-weight: 700;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    
+    .item {
+      margin-bottom: 12px;
+    }
+    
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 13.5px;
+      margin-bottom: 3px;
+    }
+    
+    .item-subheader {
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-text-light);
+      font-style: italic;
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+    
+    .item-desc {
+      font-size: 12.5px;
+      color: var(--color-text);
+      margin-left: 15px;
+    }
+    
+    .item-desc li {
+      margin-bottom: 3px;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 20px;
+      font-size: 12.5px;
+    }
+    
+    .skills-group {
+      display: flex;
+    }
+    
+    .skills-label {
+      font-weight: 700;
+      width: 140px;
+      color: var(--color-text);
+    }
+    
+    .skills-value {
+      flex-grow: 1;
+      color: var(--color-text-light);
+    }
+    
+    .languages-list {
+      font-size: 12.5px;
+      color: var(--color-text-light);
+    }
+    
+    .languages-list span {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    
+    @media print {
+      body {
+        padding: 0;
+      }
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Suraj Jude</h1>
+    <div class="subtitle">Backend Developer | Java & Spring Boot Specialist</div>
+    <div class="contact-info">
+      <span>📍 Chandrapur, Maharashtra, India</span>
+      <span>📧 <a href="mailto:surajjude888@gmail.com">surajjude888@gmail.com</a></span>
+      <span>🔗 <a href="https://linkedin.com/in/suraj-jude-26513a316/" target="_blank">linkedin.com/in/suraj-jude</a></span>
+      <span>🐙 <a href="https://github.com/Surajjude" target="_blank">github.com/Surajjude</a></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Education</div>
+    
+    <div class="item">
+      <div class="item-header">
+        <span>Bachelor of Technology in Computer Science & Engineering</span>
+        <span>2022 — 2026</span>
+      </div>
+      <div class="item-subheader">
+        <span>Government College of Engineering, Chandrapur</span>
+        <span>Aggregate CGPA: 8.20 / 10.0 (74.5%)</span>
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-header">
+        <span>Senior Secondary (XII) — Science</span>
+        <span>2022</span>
+      </div>
+      <div class="item-subheader">
+        <span>Bajaj College of Science, Wardha</span>
+        <span>Percentage: 79.33%</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span>Secondary (X)</span>
+        <span>2020</span>
+      </div>
+      <div class="item-subheader">
+        <span>Model High School, Salod (Hirapur), Wardha</span>
+        <span>Percentage: 89.80%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skills-group">
+        <span class="skills-label">Languages:</span>
+        <span class="skills-value">Java, SQL, JavaScript, C</span>
+      </div>
+      <div class="skills-group">
+        <span class="skills-label">Backend:</span>
+        <span class="skills-value">Spring Boot, Node.js, JDBC, Microservices</span>
+      </div>
+      <div class="skills-group">
+        <span class="skills-label">Frontend:</span>
+        <span class="skills-value">React, Next.js, HTML5, CSS3, ES6 JavaScript</span>
+      </div>
+      <div class="skills-group">
+        <span class="skills-label">Databases:</span>
+        <span class="skills-value">MongoDB, PostgreSQL</span>
+      </div>
+      <div class="skills-group">
+        <span class="skills-label">Tools & Cloud:</span>
+        <span class="skills-value">AWS, Git & GitHub, Windows OS</span>
+      </div>
+      <div class="skills-group">
+        <span class="skills-label">Learning:</span>
+        <span class="skills-value">Data Structures & Algorithms (Java), System Design</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Projects</div>
+
+    <div class="item">
+      <div class="item-header">
+        <span>Virtual Library — Flipbook Reader</span>
+        <span>April 2025</span>
+      </div>
+      <div class="item-subheader">
+        <span>Role: Team Lead | React, Next.js, Node.js, MongoDB, AWS</span>
+        <span><a href="https://bytesnest.xyz/" target="_blank">bytesnest.xyz</a></span>
+      </div>
+      <ul class="item-desc">
+        <li>Designed and developed an immersive, graphically interactive web platform that replicates the physical book reading experience with realistic page-flipping animations.</li>
+        <li>Implemented full support for PDF uploads, book parsing, and user library management.</li>
+        <li>Built backend services using Node.js/Express, MongoDB, and deployed the stack onto AWS Cloud infrastructure.</li>
+        <li>Led the development team, assigned development tasks, and monitored delivery timelines.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span>AI-Powered Mock Interview Platform</span>
+        <span>In Development</span>
+      </div>
+      <div class="item-subheader">
+        <span>Full-Stack & AI developer | React, Spring Boot, Artificial Intelligence Models</span>
+        <span>GitHub Project</span>
+      </div>
+      <ul class="item-desc">
+        <li>Developing a system to assist job seekers by generating realistic mock interview sessions tailored to specific technical roles.</li>
+        <li>Using Java & Spring Boot backend services to secure user profiles and track interview progress data.</li>
+        <li>Integrating AI/ML evaluation metrics to analyze transcript audio/video responses and deliver real-time mock ratings.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Certifications</div>
+    <div class="item" style="margin-bottom: 5px;">
+      <strong>Java Programming Virtual Internship Certification</strong> — <em>CodSoft</em> (Aug 2024)
+    </div>
+    <div class="item" style="margin-bottom: 5px;">
+      <strong>Introduction to Software Engineering</strong> — <em>IBM (via Coursera)</em> (Jan 2025)
+    </div>
+    <div class="item" style="margin-bottom: 5px;">
+      <strong>AWS Cloud Technical Essentials</strong> — <em>Amazon Web Services (via Coursera)</em> (Nov 2025)
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Languages</div>
+    <div class="languages-list">
+      <span>Marathi</span> (Native) &nbsp;|&nbsp; <span>Hindi</span> (Fluent) &nbsp;|&nbsp; <span>English</span> (Proficient)
+    </div>
+  </div>
+
+</body>
+</html>

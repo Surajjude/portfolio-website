@@ -10,9 +10,6 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%236366f1'/><stop offset='100%25' style='stop-color:%23a855f7'/></linearGradient></defs><rect rx='20' width='100' height='100' fill='url(%23g)'/><text x='50' y='68' font-family='Poppins,sans-serif' font-size='48' font-weight='800' fill='white' text-anchor='middle'>SJ</text></svg>" type="image/svg+xml">
 
   <link rel="stylesheet" href="css/style.css">
-  
-  <!-- EmailJS Library -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
 </head>
 <body>
 
@@ -194,35 +191,7 @@
     </div>
   </footer>
 
-<<<<<<< HEAD
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-=======
-  <!-- EmailJS Logic Hook -->
-  <script>
-    (function() {
-      // 1. Put your EmailJS Public Key here
-      emailjs.init("4xQJ92efHSihtMWsW");
-    })();
-
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const btnText = document.getElementById('btn-text');
-      btnText.innerText = "Sending...";
-
-      // 2. Put your Service ID and Template ID here
-      emailjs.sendForm('service_vz663yp', 'template_u838fia', this)
-        .then(function() {
-          document.querySelector('.form-content').style.display = 'none';
-          document.querySelector('.form-success').style.display = 'block';
-        }, function(error) {
-          alert('Failed to send message: ' + JSON.stringify(error));
-          btnText.innerText = "Send Message";
-        });
-    });
-  </script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
->>>>>>> 473e6f4ce2ad085f21d274ffc8a16f2b8ed3e3c0
   <script src="js/script.js"></script>
 </body>
 </html>

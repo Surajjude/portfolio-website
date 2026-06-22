@@ -389,22 +389,16 @@
         // Disable submit button
         if (submitBtn) submitBtn.disabled = true;
 
-<<<<<<< HEAD
         // Get the selected service label text
         const serviceLabel = serviceSelect
           ? serviceSelect.options[serviceSelect.selectedIndex].text
           : 'Not specified';
 
-=======
->>>>>>> 473e6f4ce2ad085f21d274ffc8a16f2b8ed3e3c0
         // Send email using EmailJS
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           from_name: nameInput.value.trim(),
           from_email: emailInput.value.trim(),
-<<<<<<< HEAD
           service: serviceLabel,
-=======
->>>>>>> 473e6f4ce2ad085f21d274ffc8a16f2b8ed3e3c0
           message: messageInput.value.trim(),
           to_email: 'surajjude888@gmail.com'
         }).then(

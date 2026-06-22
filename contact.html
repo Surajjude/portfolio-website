@@ -23,6 +23,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
         <li><a href="projects.html" class="nav-link">Projects</a></li>
         <li><a href="education.html" class="nav-link">Education</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -68,6 +69,21 @@
               <div class="form-group">
                 <label for="contact-email">Email Address</label>
                 <input type="email" id="contact-email" name="email" autocomplete="email" required>
+                <p class="error-msg"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-service">Service Interested In</label>
+                <select id="contact-service" name="service">
+                  <option value="" disabled selected>Select a service...</option>
+                  <option value="fullstack">Java Full-Stack Development</option>
+                  <option value="backend">Backend & API Development</option>
+                  <option value="spring">Spring Boot Projects</option>
+                  <option value="database">Database Migration to PostgreSQL</option>
+                  <option value="cloud">Cloud Deployment & AWS</option>
+                  <option value="bugfix">Bug Fixes & Code Review</option>
+                  <option value="other">Other / Not Sure</option>
+                </select>
                 <p class="error-msg"></p>
               </div>
 
@@ -151,6 +167,7 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="education.html">Education</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -174,6 +191,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

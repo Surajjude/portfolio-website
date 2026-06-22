@@ -6,6 +6,16 @@
 (function () {
   'use strict';
 
+  // EmailJS Configuration
+  const EMAILJS_SERVICE_ID = 'service_vz663yp';
+  const EMAILJS_TEMPLATE_ID = 'template_u838fia';
+  const EMAILJS_PUBLIC_KEY = '4xQJ92efHSihtMWsW';
+
+  // Initialize EmailJS
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
   // ---------- Theme Toggle ----------
   let currentTheme = 'dark'; // Stored in variable, not localStorage
 
@@ -306,16 +316,18 @@
     });
   }
 
-  // ---------- Contact Form Validation ----------
+  // ---------- Contact Form Validation & Email Sending ----------
   function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
     const nameInput = document.getElementById('contact-name');
     const emailInput = document.getElementById('contact-email');
+    const serviceSelect = document.getElementById('contact-service');
     const messageInput = document.getElementById('contact-message');
     const formContent = document.querySelector('.form-content');
     const formSuccess = document.querySelector('.form-success');
+    const submitBtn = form.querySelector('button[type="submit"]');
 
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -333,9 +345,10 @@
     }
 
     // Clear errors on input
-    [nameInput, emailInput, messageInput].forEach(input => {
+    [nameInput, emailInput, serviceSelect, messageInput].forEach(input => {
       if (input) {
         input.addEventListener('input', () => clearError(input));
+        input.addEventListener('change', () => clearError(input));
       }
     });
 
@@ -344,7 +357,7 @@
       let isValid = true;
 
       // Clear all errors
-      [nameInput, emailInput, messageInput].forEach(input => {
+      [nameInput, emailInput, serviceSelect, messageInput].forEach(input => {
         if (input) clearError(input);
       });
 
@@ -360,6 +373,12 @@
         isValid = false;
       }
 
+      // Validate service selection
+      if (serviceSelect && !serviceSelect.value) {
+        showError(serviceSelect, 'Please select a service');
+        isValid = false;
+      }
+
       // Validate message
       if (messageInput && messageInput.value.trim().length < 10) {
         showError(messageInput, 'Please enter a message (at least 10 characters)');
@@ -367,16 +386,42 @@
       }
 
       if (isValid) {
-        // Show success state
-        if (formContent) formContent.style.display = 'none';
-        if (formSuccess) formSuccess.classList.add('show');
+        // Disable submit button
+        if (submitBtn) submitBtn.disabled = true;
 
-        // Reset form after a delay
-        setTimeout(() => {
-          form.reset();
-          if (formContent) formContent.style.display = 'block';
-          if (formSuccess) formSuccess.classList.remove('show');
-        }, 4000);
+        // Get the selected service label text
+        const serviceLabel = serviceSelect
+          ? serviceSelect.options[serviceSelect.selectedIndex].text
+          : 'Not specified';
+
+        // Send email using EmailJS
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          from_name: nameInput.value.trim(),
+          from_email: emailInput.value.trim(),
+          service: serviceLabel,
+          message: messageInput.value.trim(),
+          to_email: 'surajjude888@gmail.com'
+        }).then(
+          (response) => {
+            // Success
+            if (formContent) formContent.style.display = 'none';
+            if (formSuccess) formSuccess.classList.add('show');
+
+            // Reset form after a delay
+            setTimeout(() => {
+              form.reset();
+              if (formContent) formContent.style.display = 'block';
+              if (formSuccess) formSuccess.classList.remove('show');
+              if (submitBtn) submitBtn.disabled = false;
+            }, 4000);
+          },
+          (error) => {
+            // Error sending email
+            console.error('EmailJS error:', error);
+            showError(submitBtn ? submitBtn.parentElement : form, 'Failed to send message. Please try again.');
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        );
       }
     });
   }
@@ -397,6 +442,61 @@
     toggleBtn.addEventListener('click', toggleTheme);
   }
 
+  // ---------- Stats Counter ----------
+  function initStatsCounter() {
+    const statNumbers = document.querySelectorAll('.stat-card .number');
+    if (statNumbers.length === 0) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const animateCount = (el) => {
+      const target = parseFloat(el.getAttribute('data-target'));
+      if (isNaN(target)) return;
+      const suffix = el.getAttribute('data-suffix') || '';
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const duration = 1500; // 1.5 seconds
+      const startTime = performance.now();
+
+      const updateCount = (currentTime) => {
+        const elapsedTime = currentTime - startTime;
+        if (elapsedTime >= duration) {
+          el.textContent = target.toFixed(decimals) + suffix;
+        } else {
+          const progress = elapsedTime / duration;
+          // Easing function: easeOutQuad
+          const easeProgress = progress * (2 - progress);
+          const currentValue = easeProgress * target;
+          el.textContent = currentValue.toFixed(decimals) + suffix;
+          requestAnimationFrame(updateCount);
+        }
+      };
+
+      requestAnimationFrame(updateCount);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    statNumbers.forEach((el) => {
+      // Set initial state before animation starts
+      const suffix = el.getAttribute('data-suffix') || '';
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const initialVal = 0;
+      el.textContent = initialVal.toFixed(decimals) + suffix;
+      observer.observe(el);
+    });
+  }
+
   // ---------- Initialize Everything ----------
   function init() {
     setTheme(currentTheme);
@@ -412,6 +512,7 @@
     initContactForm();
     initFooterYear();
     initThemeToggle();
+    initStatsCounter();
   }
 
   // Run when DOM is ready

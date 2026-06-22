@@ -602,6 +602,7 @@ button {
   height: 100%;
   z-index: 1;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .particle {
